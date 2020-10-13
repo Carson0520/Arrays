@@ -1,21 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SamplePrograms.ArrayMethods;
+public class SumArrayByRow{
+public static void main(String[] args){
+double shopping[][] = {
+{3.49,12.50,14},
+{20,30.50},
+{34,12,50,101.34,23.99,54.17}
+};
 
-/**
- *
- * @author cars0520
- */
-public class SumArrayByRow {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+
+double tots[] = getTotals(shopping);
+
+
+    System.out.println ("Totals for " + tots.length + "days: ");
+
+for (int i = 0;
+    i<tots.length;
+    i++){
+    System.out.format("tots[%d] = $%.2f\n", i, tots[i]);
+
     }
-    
+}
+
+public static double[] getTotals(double prices[][]){
+double totals[] = new double[prices.length];
+//totlas need to have same as number of rows in prices
+for (int i =0; i<prices.length;i++){
+for (int j =0; j<prices[i].length;j++){
+
+}
+}
+return totals;
+}
 }
