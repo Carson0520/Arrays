@@ -5,11 +5,15 @@
  */
 package StudentGUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cars0520
  */
 public class StudentPopUp extends javax.swing.JDialog {
+
+    Student temp;
 
     /**
      * Creates new form StudentPopUp
@@ -17,6 +21,20 @@ public class StudentPopUp extends javax.swing.JDialog {
     public StudentPopUp(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public void setForm(Student s) {
+        //put student name in boc
+        nametxt.setText(s.getName());
+        //put 3 makrs into table
+        for (int i = 0; i < 3; i++) {
+            tblmarks.setValueAt(s.getMark(i + 1), 0, i);
+
+        }
+    }
+
+    public Student getStudent() {
+        return temp;
     }
 
     /**
@@ -33,7 +51,7 @@ public class StudentPopUp extends javax.swing.JDialog {
         nametxt = new javax.swing.JTextField();
         OKbtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblmarks = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
@@ -50,7 +68,7 @@ public class StudentPopUp extends javax.swing.JDialog {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblmarks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null}
             },
@@ -58,8 +76,8 @@ public class StudentPopUp extends javax.swing.JDialog {
                 "Mark 1", "Mark 2", "Mark 3"
             }
         ));
-        jTable1.setRowSelectionAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        tblmarks.setRowSelectionAllowed(false);
+        jScrollPane1.setViewportView(tblmarks);
 
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +126,16 @@ public class StudentPopUp extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void OKbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKbtnActionPerformed
+        int marks[] = new int[3];
+        String name = nametxt.getText();
+        try {
+            marks[0] = Integer.parseInt(tblmarks.getValueAt(0, 0).toString());
+            marks[1] = Integer.parseInt(tblmarks.getValueAt(0, 1).toString());
+            marks[2] = Integer.parseInt(tblmarks.getValueAt(0, 2).toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Fill out all fields\n(press <enter> on each mark)");
+        }
+        temp = new Student(name, marks);
         this.dispose();
     }//GEN-LAST:event_OKbtnActionPerformed
 
@@ -163,7 +191,7 @@ public class StudentPopUp extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nametxt;
+    private javax.swing.JTable tblmarks;
     // End of variables declaration//GEN-END:variables
 }
