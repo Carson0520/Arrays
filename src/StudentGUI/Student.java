@@ -70,7 +70,6 @@ return high;
     	return name;
     }
 
-
     //validate data
     public String validateData() {
     	String message = null;

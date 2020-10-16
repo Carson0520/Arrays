@@ -82,8 +82,8 @@ public class StudentBrowser extends javax.swing.JFrame {
         countlbl = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         indexlbl = new javax.swing.JLabel();
-        firstbtn = new javax.swing.JButton();
-        lastbtn = new javax.swing.JButton();
+        Firstbtn = new javax.swing.JButton();
+        Lastbtn = new javax.swing.JButton();
         Nextbtn = new javax.swing.JButton();
         Backbtn = new javax.swing.JButton();
 
@@ -127,17 +127,17 @@ public class StudentBrowser extends javax.swing.JFrame {
 
         indexlbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        firstbtn.setText("<<");
-        firstbtn.addActionListener(new java.awt.event.ActionListener() {
+        Firstbtn.setText("<<");
+        Firstbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstbtnActionPerformed(evt);
+                FirstbtnActionPerformed(evt);
             }
         });
 
-        lastbtn.setText(">>");
-        lastbtn.addActionListener(new java.awt.event.ActionListener() {
+        Lastbtn.setText(">>");
+        Lastbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastbtnActionPerformed(evt);
+                LastbtnActionPerformed(evt);
             }
         });
 
@@ -206,13 +206,13 @@ public class StudentBrowser extends javax.swing.JFrame {
                         .addComponent(indexlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(firstbtn)
+                        .addComponent(Firstbtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Backbtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Nextbtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lastbtn)
+                        .addComponent(Lastbtn)
                         .addGap(37, 37, 37))))
         );
         layout.setVerticalGroup(
@@ -254,8 +254,8 @@ public class StudentBrowser extends javax.swing.JFrame {
                             .addComponent(averagelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(firstbtn)
-                            .addComponent(lastbtn)
+                            .addComponent(Firstbtn)
+                            .addComponent(Lastbtn)
                             .addComponent(Nextbtn)
                             .addComponent(Backbtn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
@@ -270,33 +270,23 @@ public class StudentBrowser extends javax.swing.JFrame {
 
     private void ModifybtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifybtnActionPerformed
         // TODO add your handling code here:
-        StudentPopUp sp = new StudentPopUp(this, true);
-        sp.setForm(s[currentstudent]);
-        sp.setLocationRelativeTo(this); //pops up over frame
-        sp.setVisible(true); //show the popup
-        //after dispose this code will resume here...
-         Student temp = sp.getStudent(); //get student from form
-         
-               String em = temp.validateData(); //make sure it's okay
+        StudentPopUp sp = new StudentPopUp(this, true); //pop up form
+        sp.setForm(s[currentstudent]);  //put  student info there  ahead of time
+        sp.setModal(true);//to take control...
+        sp.setLocationRelativeTo(this); //over top os this one
+        sp.setVisible(true);
+        Student temp = sp.getStudent(); //get student from form
+        String em = temp.validateData(); //make sure its ok
 
-        if (em == null)//add it to list
+        if (em == null) //add it to list
         {
             s[currentstudent] = temp;
-
-
-            showStudent(); //update display
+            showStudent();  //update display
         } else //do not and show error
         {
             JOptionPane.showMessageDialog(this, em);
         }
 
-        
-        
-
-
-
-        
-        
     }//GEN-LAST:event_ModifybtnActionPerformed
 
     private void AddbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddbtnActionPerformed
@@ -308,18 +298,20 @@ public class StudentBrowser extends javax.swing.JFrame {
         //after dispose this code will resume here...
         Student temp = sp.getStudent(); //get student from form
 
-        String em = temp.validateData(); //make sure it's okay
+        String em = temp.validateData(); //make sure its ok
 
-        if (em == null)//add it to list
+        if (em == null) //add it to list
         {
             s[size] = temp;
             currentstudent = size;
             size++;
-            showStudent(); //update display
+            showStudent();  //update display
         } else //do not and show error
         {
             JOptionPane.showMessageDialog(this, em);
         }
+
+
     }//GEN-LAST:event_AddbtnActionPerformed
 
     private void NextbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextbtnActionPerformed
@@ -338,18 +330,17 @@ public class StudentBrowser extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BackbtnActionPerformed
 
-    private void lastbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastbtnActionPerformed
-        // TODO add your handling code here:
-        currentstudent = size -1;
-        showStudent();
-
-    }//GEN-LAST:event_lastbtnActionPerformed
-
-    private void firstbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstbtnActionPerformed
+    private void FirstbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstbtnActionPerformed
         // TODO add your handling code here:
         currentstudent = 0;
         showStudent();
-    }//GEN-LAST:event_firstbtnActionPerformed
+    }//GEN-LAST:event_FirstbtnActionPerformed
+
+    private void LastbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastbtnActionPerformed
+        // TODO add your handling code here:
+        currentstudent = (size - 1);
+        showStudent();
+    }//GEN-LAST:event_LastbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,6 +368,7 @@ public class StudentBrowser extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(StudentBrowser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -389,11 +381,12 @@ public class StudentBrowser extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Addbtn;
     private javax.swing.JButton Backbtn;
+    private javax.swing.JButton Firstbtn;
+    private javax.swing.JButton Lastbtn;
     private javax.swing.JButton Modifybtn;
     private javax.swing.JButton Nextbtn;
     private javax.swing.JLabel averagelbl;
     private javax.swing.JLabel countlbl;
-    private javax.swing.JButton firstbtn;
     private javax.swing.JLabel indexlbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -402,7 +395,6 @@ public class StudentBrowser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JButton lastbtn;
     private javax.swing.JTextField mark1txt;
     private javax.swing.JTextField mark2txt;
     private javax.swing.JTextField mark3txt;

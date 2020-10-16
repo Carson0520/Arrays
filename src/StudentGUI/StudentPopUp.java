@@ -15,21 +15,17 @@ public class StudentPopUp extends javax.swing.JDialog {
 
     Student temp;
 
-    /**
-     * Creates new form StudentPopUp
-     */
     public StudentPopUp(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
     public void setForm(Student s) {
-        //put student name in boc
+        //put student  name  in name box
         nametxt.setText(s.getName());
-        //put 3 makrs into table
+        //put 3 marks into table
         for (int i = 0; i < 3; i++) {
             tblmarks.setValueAt(s.getMark(i + 1), 0, i);
-
         }
     }
 
@@ -134,6 +130,7 @@ public class StudentPopUp extends javax.swing.JDialog {
             marks[2] = Integer.parseInt(tblmarks.getValueAt(0, 2).toString());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Fill out all fields\n(press <enter> on each mark)");
+            return ;
         }
         temp = new Student(name, marks);
         this.dispose();
@@ -168,6 +165,7 @@ public class StudentPopUp extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(StudentPopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
